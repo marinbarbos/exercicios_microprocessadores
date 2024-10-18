@@ -1,0 +1,47 @@
+aula 1 e 2:
+- intrucao nativa -> nao tem nenhum passo extra na compilacao, executada diretamente pelo processador
+- pseudoinstrucao -> instrucao que na compilacao é aberta em varias instrucoes nativas, existem para facilitar a vida do programador, ex. mova
+    pq usar movi ao inves de movia? o movia vai sempre abrir em duas instrucoes, com a parte alta e baixa, o movi so precisa de uma, é mais rápido
+- diretiva de montagem -> oprecaoes feitas em tempo de compilacao, pré execucao
+
+aula 3:
+- subrotinas -> 
+    call chama um lugar na memoria e salva o endereco de retorno em algum lugar, e ret que volta no endereco salvo pelo call
+- ABI -> Application Binary Interface
+    documento do sistema, define a interface entre o codigo binario e as interfaces que interagem com esse codigo,
+      ex. int em C pode ser 4 bytes ou não depende da ABI 
+      ex. quantidade de registradores para uma subrotina
+      é de interesse dos trabalhadores do mundo acabar com as ABIs dos latifundiários digitais(ex. microsoft)
+- stack frame -> pilha de memoria, o projeto precisa de stack frame lmao, lol
+    ex. armazenar variaveis caso registradores acabem
+    ex. enderecos de retorno(caso tenhamos mais de uma subrotina), 
+      no caso da intel o call já coloca na pilha, no nios precisamos colocar manualmente
+    ex. frame pointer antigo, aponta pro frame anterior no call stack dos stack frames
+- CISC vs RISC -> indica o quao complexa sao as intstrucoes do processador quanto mais complexas, menos intrucoes sao necessarias para programar 
+    C = complex, menos instrucoes, instrucoes mais complexas, mais util com menos memoria
+    R = reduced, mais instrucoes, menos complexas, menos util com muita memoria, comum atualmente
+
+aula 4/5/6?:
+- manipulacao de bits -> manipular os bits, shifts, masks etc
+- E/S -> IO
+    Polling -> fica esperendo alguma entrada em loop
+    Interrupcao -> o dispositivo interrompe o processador sem o mesmo estar em loop, depende completamente do hardware
+      pino de interrupcao do processador que recebe um codigo que fala onde vem a interrupcao, salva o contexto, e pula para uma rotina, e retorna ao contexto salvo dps
+      desvantagem: hardware mais complexo, um sistema sem interrupcao é mais facil de projetar
+    quando usar polling ou interrupcao? se um dispositivo for rápido é preferível usar o Polling(ex. GPU), ao invés disso é preferível usar Interrupção(ex. mouse)
+- E/S mapeada em memória -> quando precisamos conversar com o dispositivo iremos usar as E/S em memória, usamos os load e stores para interagir com os dispositivos
+    quando acessamos a memória mapeada com o dispositivo de E/S estamos interagindo com o dispositivo externo
+    problema: a memória reservada para a E/S deixa de ser utilizável para outras coisas/ocupa memória
+
+aula 7:
+- bufferização -> buffer é utilizado quando a comunicação é feita entre dois negócios de velocidade diferente, ex. processador e teclado(UART)
+- Comunicação Serial e Paralela -> serial passa um bit por vez e paralela usa vários negocinhos para enviar varios bits de uma vez
+    pq atualmente usamos serial ao inves de paralelo? comunicação paralela tem um grande problema de ruído, limitando o tamanho do cabo etc devido a isso com um fio só 
+      podemos aumentar muito mais a frequancia de transmissao de dados pois utilizamos apenas um fio, limitando o ruído e aumentando os limites físicos
+    PCI Express é paralelo, GPU é paralelo, dispositivos lentos são todos seriais(ex. USB)
+    Se for para algo interno usamos paralelo, usando algo externo usamos serial
+
+aula 8:
+- resolução -> acurácia, quantos bits necessário para guardar uma amostra digitalmente, precisão do dado, muita resolução = muita memória
+- taxa de amostragem -> número de amostras capturados em um período, depende do teorema de n sei o q que fala que a frequancia tem que ser duas vezes maior do que a frequncia 
+    sendo capturada para nao perder os dados, quanto mais amostras mais memória
